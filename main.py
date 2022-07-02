@@ -29,7 +29,7 @@ def get_sorted_products(products, category_list):
 
 def main():
     excel_data_df = pandas.read_excel(
-        'wine3.xlsx',
+        'catalog.xlsx',
         sheet_name='Лист1',
         na_values=['None'], keep_default_na=False
     )
