@@ -1,8 +1,10 @@
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+import argparse
+import collections
 import datetime
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import pandas
-import collections
 
 
 def get_write_year(year):
@@ -27,16 +29,27 @@ def get_sorted_products(products, category_list):
     return product_dict
 
 
+def create_parser():
+    parser = argparse.ArgumentParser(description='Run Web-server')
+    parser.add_argument(
+        '-p', '--path',
+        default='catalog.xlsx', help='Path to ".xlsx"'
+    )
+    return parser
+
+
 def main():
+    parser = create_parser()
+    namespace = parser.parse_args()
     excel_data_df = pandas.read_excel(
-        'catalog.xlsx',
+        namespace.path,
         sheet_name='Лист1',
         na_values=['None'], keep_default_na=False
     )
     products = excel_data_df.to_dict(orient='record')
-    columns_list = excel_data_df.columns.ravel()
-    category_list = excel_data_df[columns_list[0]].tolist()
-    product_dict = get_sorted_products(products, category_list)
+    columns = excel_data_df.columns.ravel()
+    categories = excel_data_df[columns[0]].tolist()
+    sorted_products = get_sorted_products(products, categories)
 
     env = Environment(
         loader=FileSystemLoader('.'),
@@ -48,7 +61,7 @@ def main():
     passed_years = now.year - date_since.year
     text_years = get_write_year(passed_years)
     rendered_page = template.render(
-        product_dict=product_dict,
+        product_dict=sorted_products,
         passed_years=passed_years,
         text_years=text_years)
     with open('index.html', 'w', encoding="utf8") as file:
