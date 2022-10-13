@@ -22,11 +22,11 @@ def get_write_year(year):
     return text
 
 
-def get_sorted_products(products, category_list):
-    product_dict = collections.defaultdict(list)
-    for num in range(len(category_list)):
-        product_dict[category_list[num]].append(products[num])
-    return product_dict
+def get_sorted_products(products, categories):
+    sorted_products = collections.defaultdict(list)
+    for num in range(len(products)):
+        sorted_products[categories[num]].append(products[num])
+    return sorted_products
 
 
 def create_parser():
