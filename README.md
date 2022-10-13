@@ -8,6 +8,7 @@
 
 - Add a line with a new product to `catalog.xlsx`
 
+- You can create your own product database, for this, take the `catalog.xlsx` file as an example
 
 ### Requirements
 * Jinja2==3.1.2
@@ -26,8 +27,9 @@ pip install -r requirements.txt
 ### Open project directory from cmd
 
 ```
-$ python main.py
+$ python main.py -p <PATH>
 ```
+<PATH> - path to database `.xlsx`, default it's `catalog.xlsx` 
 
 Open in browser http://127.0.0.1:8000/index.html
 
