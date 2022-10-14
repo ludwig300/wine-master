@@ -9,16 +9,14 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 def get_write_year(year):
     count = year % 100
+    text = 'лет'
     if count >= 5 and count <= 20:
-        text = 'лет'
-    else:
-        count = count % 10
-        if count == 1:
-            text = 'год'
-        elif count >= 2 and count <= 4:
-            text = 'года'
-        else:
-            text = 'лет'
+        return text
+    count = count % 10
+    text = 'год'
+    if count == 1:
+        return text
+    text = 'года'
     return text
 
 
