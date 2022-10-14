@@ -59,7 +59,7 @@ def main():
     passed_years = now.year - year_since
     text_years = get_write_year(passed_years)
     rendered_page = template.render(
-        product_dict=sorted_products,
+        products=sorted_products,
         passed_years=passed_years,
         text_years=text_years)
     with open('index.html', 'w', encoding="utf8") as file:
