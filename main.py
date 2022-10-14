@@ -3,8 +3,8 @@ import collections
 import datetime
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
-from jinja2 import Environment, FileSystemLoader, select_autoescape
 import pandas
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
 def get_write_year(year):
@@ -57,8 +57,8 @@ def main():
     )
     template = env.get_template('template.html')
     now = datetime.datetime.now()
-    date_since = datetime.datetime(year=1920, month=1, day=1, hour=0)
-    passed_years = now.year - date_since.year
+    year_since = 1920
+    passed_years = now.year - year_since
     text_years = get_write_year(passed_years)
     rendered_page = template.render(
         product_dict=sorted_products,
