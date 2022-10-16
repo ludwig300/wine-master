@@ -114,29 +114,29 @@
           </div>
         </div>
         <div class="row">
-          {% for names in products %}
+          {% for name, meta_data in products.items() %}
           <div class="col-12 section-title text-center mb-5">
-            <h2 class="d-block">{{names}}</h2>
+            <h2 class="d-block">{{name}}</h2>
           </div>
-          {% for name in products[names] %}
+          {% for item in meta_data %}
           <div class="col-lg-4 mb-5 col-md-6">
             <div class="wine_v_1 text-center pb-4 pt-5">
-              {% if name.Акция %}
-              <img src="images/{{name.Картинка}}" alt="Image" class="img-fluid">
+              {% if item.Акция %}
+              <img src="images/{{item.Картинка}}" alt="Image" class="img-fluid">
               <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
               {% else %}
-              <img src="images/{{name.Картинка}}" alt="Image" class="img-fluid">
+              <img src="images/{{item.Картинка}}" alt="Image" class="img-fluid">
               {% endif %}
               <div>
-                <h3 class="heading mt-3 mb-3 text-dark">{{name.Название}}</h3>
-                {% if name.Сорт %}
+                <h3 class="heading mt-3 mb-3 text-dark">{{item.Название}}</h3>
+                {% if item.Сорт %}
                 <p>
-                  Сорт винограда - {{name.Сорт}}<br/>
-                  <span class="price">{{name.Цена}} р.</span>
+                  Сорт винограда - {{item.Сорт}}<br/>
+                  <span class="price">{{item.Цена}} р.</span>
                 </p>
                 {% else %}
                 <p>
-                  <span class="price">{{name.Цена}} р.</span>
+                  <span class="price">{{item.Цена}} р.</span>
                 </p>
                 {% endif %}
               </div>
