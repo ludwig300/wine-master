@@ -55,13 +55,13 @@ def main():
     )
     template = env.get_template('template.html')
     now = datetime.datetime.now()
-    year_since = 1920
-    passed_years = now.year - year_since
-    text_years = get_write_year(passed_years)
+    year_foundation = 1920
+    winery_age = now.year - year_foundation
+    years_text = get_write_year(winery_age)
     rendered_page = template.render(
         products=sorted_products,
-        passed_years=passed_years,
-        text_years=text_years)
+        passed_years=winery_age,
+        text_years=years_text)
     with open('index.html', 'w', encoding="utf8") as file:
         file.write(rendered_page)
 
